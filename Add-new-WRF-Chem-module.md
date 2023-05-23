@@ -1,13 +1,15 @@
 # Create a new FORTRAN module in WRF-Chem
-Louis Marelle,  2023-05-23
+_Louis Marelle,  2023-05-23_
 
-The following guide explains how to add a new FORTRAN module in the WRF-Chem model. As an example, we will give the steps to add a new module that performs tracer emissions in the chem_opt option 14 (also called CHEM_TRACE2).
+The following guide explains how to add a new FORTRAN module in the WRF-Chem model. As an example, we will explain the steps to add a new module that performs tracer emissions for the chem_opt option 14 (also called CHEM_TRACE2).
 
 ## 1) Create the module file in chem/
 
-For a module handling tracer emissions, create the file
+Create the module file. To follow WRF conventions the file name should begin with module\_, for example:
+
 ```chem/module_tracer_emiss.F ```
-The basic syntax for a FORTRAN module containing one subroutine is the following:
+
+Write the module code in chem/module_tracer_emiss.F. The basic syntax for a FORTRAN module containing one subroutine is the following. Include a driver routine with a name ending in '\_driver', that will be the one called from outside the module.
 
 ```
 MODULE module_tracer_emiss
@@ -21,7 +23,7 @@ END SUBROUTINE tracer_emissions_driver
 END MODULE module_tracer_emiss
 ```
 
-(Try to follow the coding+comment style of recent chem routines such as chem/module_seaspray_emis.F)
+Try to follow the coding and comment styles of recent chem routines from the team, for example chem/module_seaspray_emis.F
 
 ## 2) Include the new module in the chem Makefile (chem/Makefile_org)
 
