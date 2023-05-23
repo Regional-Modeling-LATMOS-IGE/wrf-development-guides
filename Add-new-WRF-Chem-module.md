@@ -53,7 +53,7 @@ ENDIF
 In order to run this CALL instruction, emissions_driver needs to know what is the routine tracer_emissions_driver. At the beginning of the subroutine where the CALL line was written (here, the emissions_driver subroutine in chem/emissions_driver.F), tell emissions_driver to use the subroutine tracer_emissions_driver from module_tracer_emiss
 
 ```
-USE module_tracer_emiss ONLY: tracer_emissions_driver
+USE module_tracer_emiss, ONLY: tracer_emissions_driver
 ```
 
 This also means that module_tracer_emiss.o needs to be compiled before emissions_driver. Tell the model that emissions_driver depends on module_tracer_emissions in the chem compilation dependencies file chem/depend.chem. In depend.chem, add the new module’s .o file name at the end of the emissions_driver dependency list:
